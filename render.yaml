@@ -1,0 +1,23 @@
+databases:
+  - name: vita-wallet-db
+    databaseName: vita_wallet_production
+    user: vita_wallet
+    plan: free
+
+services:
+  - type: web
+    name: vita-wallet
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    # preDeployCommand: "bundle exec rails db:migrate" # solo disponible en planes pagos
+    startCommand: "bundle exec rails server"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vita-wallet-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # valor sensato por defecto
