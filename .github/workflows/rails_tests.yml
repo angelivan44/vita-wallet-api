@@ -31,7 +31,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2.2' # Ajusta esto a tu versión de Ruby
+        ruby-version: '3.3.0'
         bundler-cache: true # Esto ejecutará 'bundle install' y cacheará las gemas
     
     - name: Set up database
