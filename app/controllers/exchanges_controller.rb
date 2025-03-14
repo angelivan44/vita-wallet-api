@@ -1,6 +1,10 @@
 class ExchangesController < ApplicationController
   def btc_to_usd_price
-    exchange_rate = BitcoinPriceService.fetch_btc_price
+    from_currency_code = "USD"
+    to_currency_code = "BTC"
+
+    exchange_rate = CurrencyConversionService.get_conversion_rate(from_currency_code, to_currency_code)
+
 
     if exchange_rate.nil?
       render json: { error: "Failed to fetch BTC price" }, status: :internal_server_error
