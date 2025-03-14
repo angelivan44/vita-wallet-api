@@ -9,6 +9,7 @@
 class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :transactions, dependent: :destroy
+  has_many :wallets, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
@@ -18,7 +19,7 @@ class User < ApplicationRecord
   private
 
   def create_wallets
-    Wallet.create(user: self, currency: "USD")
-    Wallet.create(user: self, currency: "BTC")
+    Wallet.create(user: self, currency: "USD", balance: 1000)
+    Wallet.create(user: self, currency: "BTC", balance: 0)
   end
 end
