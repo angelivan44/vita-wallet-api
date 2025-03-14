@@ -1,4 +1,4 @@
-ruby '3.2.2' # or another version >= 3.2.0
+ruby '3.3.3' # or another version >= 3.2.0
 
 source "https://rubygems.org"
 
